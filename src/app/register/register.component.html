@@ -1,0 +1,106 @@
+<div
+  class="container d-flex form-box align-items-center justify-content-center"
+>
+  <form [formGroup]="basicInfo" class="form">
+    <div class="form-group" [align]="'center'">
+      <h2>New User</h2>
+    </div>
+    <div class="form-group">
+      <!--Name-->
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" class="single">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="John Doe"
+          class="input"
+          formControlName="name"
+          required
+        />
+        <mat-error *ngIf="basicInfo.invalid"> Required </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <!--Email-->
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" class="single">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="email@email.com"
+          class="input"
+          formControlName="email"
+          required
+        />
+        <mat-error *ngIf="basicInfo.invalid"> Required </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <!--Password-->
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" class="single">
+        <mat-label>Password</mat-label>
+
+        <input
+          matInput
+          class="input"
+          formControlName="password"
+          type="password"
+          required
+        />
+
+        <mat-error *ngIf="basicInfo.invalid"> Required </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <!--Occupation-->
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" class="double">
+        <mat-label>Occupation</mat-label>
+        <mat-select
+          [(ngModel)]="occupationChoice"
+          formControlName="occupation"
+          required
+        >
+          <mat-option
+            *ngFor="let o of occupationList"
+            [value]="o"
+            value="option"
+          >
+            {{ o }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!--State-->
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" class="double">
+        <mat-label>State</mat-label>
+        <mat-select [(ngModel)]="stateChoice" formControlName="state" required>
+          <mat-option
+            *ngFor="let s of stateList"
+            [value]="s.name"
+            value="option"
+          >
+            {{ s.name }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="basicInfo.invalid"> Required </mat-error>
+      </mat-form-field>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+      <div [align]="'center'">
+        <button
+          mat-button
+          matStepperNext
+          type="submit"
+          class="submit"
+          [disabled]="!basicInfo.valid"
+          (click)="submitData()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
